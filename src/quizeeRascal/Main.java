@@ -3,7 +3,6 @@ package quizeeRascal;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -36,10 +35,16 @@ public class Main extends Application {
             GridPane rootFour = loaderFour.load();
             Scene sceneFour = new Scene(rootFour);
 
+            //Set up Scene 5 (Scoreboard)
+            FXMLLoader loaderFive = new FXMLLoader(getClass().getResource("scoreboard.fxml"));
+            GridPane rootFive = loaderFive.load();
+            Scene sceneFive = new Scene(rootFive);
+
             Controller soc = loaderOne.getController();
             difficultyController stc = loaderTwo.getController();
             quizController s3c = loaderThree.getController();
             finController s4c = loaderFour.getController();
+            scoreboardController s5c = loaderFive.getController();
 
             soc.setNextScene(sceneTwo);
             soc.setStc(stc);
@@ -47,6 +52,8 @@ public class Main extends Application {
             stc.setS3c(s3c);
             s3c.setNextScene(sceneFour);
             s3c.setS4c(s4c);
+            s4c.setNextScene(sceneFive);
+            s4c.setS5c(s5c);
 
 
             primaryStage.setScene(sceneOne);

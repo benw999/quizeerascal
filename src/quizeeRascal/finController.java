@@ -1,15 +1,24 @@
 package quizeeRascal;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+
 
 public class finController {
 
+    private scoreboardController s5c;
+    private Scene nextScene;
+
     public void setNextScene(Scene nextScene) {
+        this.nextScene = nextScene;
     }
 
-    public void setS4c(finController s4c) {
+    public void setS5c(scoreboardController s5c) {
+        this.s5c = s5c;
     }
 
     @FXML
@@ -21,5 +30,13 @@ public class finController {
     public void finQuiz(User currUser){
         finText.setText("Well done " + currUser.getName() + "!");
         scoreText.setText("You scored " + currUser.getScore() + "/10!");
+    }
+
+    public void goScores(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.hide();
+        primaryStage.setScene(nextScene);
+        primaryStage.show();
     }
 }
