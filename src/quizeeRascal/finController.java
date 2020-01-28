@@ -12,6 +12,8 @@ public class finController {
 
     private scoreboardController s5c;
     private Scene nextScene;
+    private Scene firstScene;
+    private User currUser;
 
     public void setNextScene(Scene nextScene) {
         this.nextScene = nextScene;
@@ -21,6 +23,10 @@ public class finController {
         this.s5c = s5c;
     }
 
+    public void setFirstScene(Scene firstScene){
+        this.firstScene = firstScene;
+    }
+
     @FXML
     private Text finText;
 
@@ -28,8 +34,9 @@ public class finController {
     private Text scoreText;
 
     public void finQuiz(User currUser){
-        finText.setText("Well done " + currUser.getName() + "!");
-        scoreText.setText("You scored " + currUser.getScore() + "/10!");
+        this.currUser = currUser;
+        finText.setText("Well done " + this.currUser.getName() + "!");
+        scoreText.setText("You scored " + this.currUser.getScore() + "/10!");
     }
 
     public void goScores(ActionEvent event) {
@@ -37,6 +44,16 @@ public class finController {
         Stage primaryStage = (Stage) node.getScene().getWindow();
         primaryStage.hide();
         primaryStage.setScene(nextScene);
+        primaryStage.show();
+    }
+
+    public void startAgain(ActionEvent event) {
+        this.currUser.setName(null);
+        this.currUser.setScore(0);
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.hide();
+        primaryStage.setScene(firstScene);
         primaryStage.show();
     }
 }
