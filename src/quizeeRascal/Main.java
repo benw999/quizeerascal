@@ -40,18 +40,34 @@ public class Main extends Application {
             GridPane rootFive = loaderFive.load();
             Scene sceneFive = new Scene(rootFive);
 
+            //Set up Scene 6 (Admin Login)
+            FXMLLoader loaderSix = new FXMLLoader(getClass().getResource("scenes\\admin_login.fxml"));
+            GridPane rootSix = loaderSix.load();
+            Scene sceneSix = new Scene(rootSix);
+
+            //Set up Scene 7 (Admin Panel)
+            FXMLLoader loaderSeven = new FXMLLoader(getClass().getResource("scenes\\admin.fxml"));
+            GridPane rootSeven = loaderSeven.load();
+            Scene sceneSeven = new Scene(rootSeven);
+
             Controller soc = loaderOne.getController();
             difficultyController stc = loaderTwo.getController();
             quizController s3c = loaderThree.getController();
             finController s4c = loaderFour.getController();
             scoreboardController s5c = loaderFive.getController();
+            loginController s6c = loaderSix.getController();
+            adminController s7c = loaderSeven.getController();
 
             soc.setNextScene(sceneTwo);
             soc.setStc(stc);
+            soc.setLoginScene(sceneSix);
+
             stc.setNextScene(sceneThree);
             stc.setS3c(s3c);
+
             s3c.setNextScene(sceneFour);
             s3c.setS4c(s4c);
+
             s4c.setNextScene(sceneFive);
             s4c.setS5c(s5c);
             s4c.setFirstScene(sceneOne);

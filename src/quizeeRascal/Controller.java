@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 public class Controller {
 
     private Scene nextScene;
+    private Scene loginScene;
     private difficultyController stc;
 
     public void setNextScene(Scene nextScene) {
@@ -21,6 +22,10 @@ public class Controller {
 
     public void setStc(difficultyController stc) {
         this.stc = stc;
+    }
+
+    public void setLoginScene(Scene loginScene) {
+        this.loginScene = loginScene;
     }
 
     @FXML
@@ -47,6 +52,14 @@ public class Controller {
             alert.setContentText("Please choose a username with only letters or numbers.");
             alert.showAndWait();
         }
+    }
+
+    public void goLogin(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage primaryStage = (Stage) node.getScene().getWindow();
+        primaryStage.hide();
+        primaryStage.setScene(loginScene);
+        primaryStage.show();
     }
 }
 
