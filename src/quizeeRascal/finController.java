@@ -14,6 +14,7 @@ public class finController {
     private Scene nextScene;
     private Scene firstScene;
     private User currUser;
+    private String difficulty;
 
     public void setNextScene(Scene nextScene) {
         this.nextScene = nextScene;
@@ -33,8 +34,9 @@ public class finController {
     @FXML
     private Text scoreText;
 
-    public void finQuiz(User currUser){
+    public void finQuiz(User currUser, String difficulty){
         this.currUser = currUser;
+        this.difficulty = difficulty;
         finText.setText("Well done " + this.currUser.getName() + "!");
         scoreText.setText("You scored " + this.currUser.getScore() + "/10!");
     }

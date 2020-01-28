@@ -14,29 +14,29 @@ public class Main extends Application {
             primaryStage.setOnCloseRequest(event -> controlledShutdown(primaryStage));
 
             //Set up Scene 1 (Main)
-            FXMLLoader loaderOne = new FXMLLoader(getClass().getResource("main.fxml"));
+            FXMLLoader loaderOne = new FXMLLoader(getClass().getResource("scenes\\main.fxml"));
             GridPane rootOne = loaderOne.load();
             Scene sceneOne = new Scene(rootOne);
             //[STYLESHEET]
 
             //Set up Scene 2 (Difficulty)
-            FXMLLoader loaderTwo = new FXMLLoader(getClass().getResource("difficulty.fxml"));
+            FXMLLoader loaderTwo = new FXMLLoader(getClass().getResource("scenes\\difficulty.fxml"));
             GridPane rootTwo = loaderTwo.load();
             Scene sceneTwo = new Scene(rootTwo);
             //[STYLESHEET]
 
             //Set up Scene 3 (Quiz)
-            FXMLLoader loaderThree = new FXMLLoader(getClass().getResource("quiz.fxml"));
+            FXMLLoader loaderThree = new FXMLLoader(getClass().getResource("scenes\\quiz.fxml"));
             GridPane rootThree = loaderThree.load();
             Scene sceneThree = new Scene(rootThree);
 
             //Set up Scene 4 (Finish)
-            FXMLLoader loaderFour = new FXMLLoader(getClass().getResource("finish.fxml"));
+            FXMLLoader loaderFour = new FXMLLoader(getClass().getResource("scenes\\finish.fxml"));
             GridPane rootFour = loaderFour.load();
             Scene sceneFour = new Scene(rootFour);
 
             //Set up Scene 5 (Scoreboard)
-            FXMLLoader loaderFive = new FXMLLoader(getClass().getResource("scoreboard.fxml"));
+            FXMLLoader loaderFive = new FXMLLoader(getClass().getResource("scenes\\scoreboard.fxml"));
             GridPane rootFive = loaderFive.load();
             Scene sceneFive = new Scene(rootFive);
 

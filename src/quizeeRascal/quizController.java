@@ -81,7 +81,7 @@ public class quizController {
                 Node node = (Node) event.getSource();
                 Stage primaryStage = (Stage) node.getScene().getWindow();
                 primaryStage.hide();
-                primaryStage.setOnShown(e -> s4c.finQuiz(currUser));
+                primaryStage.setOnShown(e -> s4c.finQuiz(currUser, difficulty));
                 primaryStage.setScene(nextScene);
                 primaryStage.show();
             }
@@ -107,12 +107,9 @@ public class quizController {
         this.selection = (Button) event.getSource();
     }
 
-    public void finishQuiz() {
-        System.out.println("Finished Quiz!");
-    }
 
     public ArrayList<String[]> loadQuestions(String difficulty){
-        String csvPath = "C:\\Users\\Admin\\IdeaProjects\\test6\\src\\quizeeRascal\\" + difficulty + ".csv";
+        String csvPath = "C:\\Users\\Admin\\IdeaProjects\\test6\\src\\quizeeRascal\\data\\" + difficulty + ".csv";
         ArrayList<String[]> questions = new ArrayList();
         try {
             BufferedReader csvReader = new BufferedReader(new FileReader(csvPath));
