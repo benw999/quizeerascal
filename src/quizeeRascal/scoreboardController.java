@@ -61,7 +61,6 @@ public class scoreboardController {
     public void goBack(ActionEvent event) {
         scoreboard.getItems().clear();
         dataList.clear();
-        System.out.println(dataList.size());
         Node node = (Node) event.getSource();
         Stage primaryStage = (Stage) node.getScene().getWindow();
         primaryStage.hide();

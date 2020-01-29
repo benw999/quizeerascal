@@ -78,6 +78,9 @@ public class Main extends Application {
             s6c.setNextScene(sceneSeven);
             s6c.setS7c(s7c);
 
+            s7c.setLastScene(sceneSix);
+            s7c.setS6c(s6c);
+
             primaryStage.setScene(sceneOne);
             primaryStage.show();
         } catch (Exception e) {
