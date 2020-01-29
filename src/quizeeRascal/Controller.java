@@ -35,10 +35,9 @@ public class Controller {
     private Text status;
 
     public void goDifficulty(ActionEvent event) {
-        System.out.println(nameInput.getText());
         if (nameInput.getText().matches("[A-z0-9]+")) {
-            User currUser = new User();
-            currUser.setName(nameInput.getText());
+            User currUser = new User((nameInput.getText()), 0);
+            System.out.println(currUser.getName());
             Node node = (Node) event.getSource();
             Stage primaryStage = (Stage) node.getScene().getWindow();
             primaryStage.hide();

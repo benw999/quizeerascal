@@ -7,6 +7,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
+import java.io.*;
+import java.util.ArrayList;
+
 
 public class finController {
 
@@ -39,12 +42,23 @@ public class finController {
         this.difficulty = difficulty;
         finText.setText("Well done " + this.currUser.getName() + "!");
         scoreText.setText("You scored " + this.currUser.getScore() + "/10!");
+        String csvPath = "C:\\Users\\Admin\\IdeaProjects\\test6\\src\\quizeeRascal\\data\\scores.csv";
+        try {
+            BufferedWriter csvWriter = new BufferedWriter(new FileWriter(csvPath, true));
+            csvWriter.write(currUser.getName() + "," + currUser.getScore());
+            csvWriter.newLine();
+            csvWriter.close();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void goScores(ActionEvent event) {
         Node node = (Node) event.getSource();
         Stage primaryStage = (Stage) node.getScene().getWindow();
         primaryStage.hide();
+        primaryStage.setOnShown(e -> s5c.loadScores());
         primaryStage.setScene(nextScene);
         primaryStage.show();
     }

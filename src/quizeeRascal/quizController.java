@@ -14,9 +14,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+
 public class quizController {
 
-    private int qNumber = 0;
+    private int qNumber;
     private User currUser;
     private int currScore;
     private String difficulty;
@@ -32,6 +34,10 @@ public class quizController {
 
     public void setS4c(finController s4c) {
         this.s4c = s4c;
+    }
+
+    public void setQNumber(int qNumber) {
+        this.qNumber = qNumber;
     }
 
     @FXML
@@ -52,6 +58,7 @@ public class quizController {
     public void startQuiz(User currUser, String difficulty){
         this.currUser = currUser;
         this.difficulty = difficulty;
+        this.qNumber = 0;
         userText.setText("User: " + this.currUser.getName());
         scoreText.setText("Score: " + this.currUser.getScore());
         diffText.setText(this.difficulty);
@@ -118,10 +125,12 @@ public class quizController {
                 String[] data = row.split(",");
                 questions.add(data);
             }
+            csvReader.close();
         }
         catch(IOException e){
             e.printStackTrace();
         }
+        Collections.shuffle(questions);
         return questions;
     }
 }

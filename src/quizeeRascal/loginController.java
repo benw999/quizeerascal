@@ -91,7 +91,7 @@ public class loginController {
         Node node = (Node) event.getSource();
         Stage primaryStage = (Stage) node.getScene().getWindow();
         primaryStage.hide();
-        //primaryStage.setOnShown(e -> s7c.setUser(currUser));
+        primaryStage.setOnShown(e -> s7c.loadTable());
         primaryStage.setScene(nextScene);
         primaryStage.show();
     }

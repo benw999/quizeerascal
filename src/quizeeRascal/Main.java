@@ -72,6 +72,9 @@ public class Main extends Application {
             s4c.setS5c(s5c);
             s4c.setFirstScene(sceneOne);
 
+            s5c.setPrevScene(sceneFour);
+            s5c.setS4c(s4c);
+
             s6c.setNextScene(sceneSeven);
             s6c.setS7c(s7c);
 

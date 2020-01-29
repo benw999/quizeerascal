@@ -19,4 +19,9 @@ public class User {
     public int getScore(){
         return this.score;
     }
+
+    public User(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
 }
