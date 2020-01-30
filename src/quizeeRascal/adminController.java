@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public class adminController {
 
-    private final ObservableList<Question> dataList = FXCollections.observableArrayList();
+    private final ObservableList<Question> dataList = FXCollections.observableArrayList(); //List of question objects for table.
     private loginController s6c;
     private Scene lastScene;
 
@@ -31,29 +31,32 @@ public class adminController {
     }
 
     @FXML
-    private TableColumn questionCol;
+    private TableColumn questionCol; //Question column.
     @FXML
-    private TableColumn aCol;
+    private TableColumn aCol; //Answer A column.
     @FXML
-    private TableColumn bCol;
+    private TableColumn bCol; //Answer B column.
     @FXML
-    private TableColumn cCol;
+    private TableColumn cCol; //Answer C column.
     @FXML
-    private TableColumn correctCol;
+    private TableColumn correctCol; //Correct answer column.
     @FXML
-    private TableView<Question> adminTable;
+    private TableView<Question> adminTable; //Entire table object to display questions and answers.
     @FXML
-    private MenuButton dropdown;
+    private MenuButton dropdown; //Drop down to select difficulty level.
 
+    //Method which loads an (empty) table - called on launch of scene.
     public void loadTable(){
-        dataList.clear();
-        adminTable.getItems().clear();
+        dataList.clear(); //Clears list of data.
+        adminTable.getItems().clear(); //Clears table if already populated.
+        //Looks for properties in the question object which match the columns.
         questionCol.setCellValueFactory(new PropertyValueFactory("question"));
         aCol.setCellValueFactory(new PropertyValueFactory("A"));
         bCol.setCellValueFactory(new PropertyValueFactory("B"));
         cCol.setCellValueFactory(new PropertyValueFactory("C"));
         correctCol.setCellValueFactory(new PropertyValueFactory("correct"));
 
+        //Alert dialog to inform the user the admin feature is not complete.
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
         alert.setHeaderText("Please note:");
@@ -61,6 +64,7 @@ public class adminController {
         alert.showAndWait();
     }
 
+    //Method which goes back to admin login screen.
     public void goBack(ActionEvent event) {
         dropdown.setText("Difficulty");
         Node node = (Node) event.getSource();
@@ -70,6 +74,7 @@ public class adminController {
         primaryStage.show();
     }
 
+    //Collection of methods to populate table with a difficulty selected by the user...
     public void setEasy() {
         dropdown.setText("Easy");
         popTable("EASY");
@@ -85,24 +90,25 @@ public class adminController {
         popTable("HARD");
     }
 
+    //Method which populates the table with question data from the CSV.
     private void popTable(String difficulty) {
-        dataList.clear();
-        adminTable.getItems().clear();
-        String csvPath = "C:\\Users\\Admin\\IdeaProjects\\test6\\src\\quizeeRascal\\data\\" + difficulty + ".csv";
+        dataList.clear(); //Clears list of data from previous loading attempts.
+        adminTable.getItems().clear(); //Clears table of previous data.
+        String csvPath = "C:\\Users\\Admin\\IdeaProjects\\test6\\src\\quizeeRascal\\data\\" + difficulty + ".csv"; //Path to question data.
         try {
             BufferedReader csvReader = new BufferedReader(new FileReader(csvPath));
             String row;
             while ((row = csvReader.readLine()) != null) {
                 String[] data = row.split(",");
                 Question question = new Question(data[0], data[1], data[2], data[3], data[4]);
-                dataList.add(question);
+                dataList.add(question); //Adds question data to list of questions.
             }
-            csvReader.close();
+            csvReader.close(); //Closes reader.
         }
         catch(IOException e){
             e.printStackTrace();
         }
-        adminTable.setItems(dataList);
+        adminTable.setItems(dataList); //Sets rows of table to each question and their answers.
     }
 
 }

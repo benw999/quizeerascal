@@ -29,6 +29,7 @@ public class difficultyController {
     @FXML
     private Text diffText;
 
+    //Selection of methods to set the difficulty to easy, medium or hard depending on which button is pressed.
     public void setEasy(){
         System.out.println("Set difficulty to easy.");
         this.difficulty = "EASY";
@@ -44,21 +45,23 @@ public class difficultyController {
         this.difficulty = "HARD";
     }
 
+    //Called upon switching to this scene... sets user name based on user input on the last scene.
     public void setUser(User currUser) {
         this.currUser = currUser;
         diffText.setText("Hello " + currUser.getName() + "! Choose your difficulty.");
         userText.setText("User: " + currUser.getName());
     }
 
+    //Method to switch to the main quiz.
     public void goQuiz(ActionEvent event){
-        if (this.difficulty != null) {
+        if (this.difficulty != null) { //If the user has chosen a difficulty level... go to quiz.
             Node node = (Node) event.getSource();
             Stage primaryStage = (Stage) node.getScene().getWindow();
             primaryStage.hide();
-            primaryStage.setOnShown(e -> s3c.startQuiz(currUser, difficulty));
+            primaryStage.setOnShown(e -> s3c.startQuiz(currUser, difficulty)); //Passes user object and difficulty level to quiz controller.
             primaryStage.setScene(nextScene);
             primaryStage.show();
-        } else {
+        } else { //If the user has not chosen a difficulty level... do not allow them to continue and display alert.
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("Don't be scared!");

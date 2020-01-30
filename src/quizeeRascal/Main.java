@@ -1,29 +1,30 @@
 package quizeeRascal;
 
+//Necessary classes to import
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+//Main method
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
         try {
+            //Safely closes the stage if the user presses the 'X'
             primaryStage.setOnCloseRequest(event -> controlledShutdown(primaryStage));
 
             //Set up Scene 1 (Main)
             FXMLLoader loaderOne = new FXMLLoader(getClass().getResource("scenes\\main.fxml"));
             GridPane rootOne = loaderOne.load();
             Scene sceneOne = new Scene(rootOne);
-            //[STYLESHEET]
 
             //Set up Scene 2 (Difficulty)
             FXMLLoader loaderTwo = new FXMLLoader(getClass().getResource("scenes\\difficulty.fxml"));
             GridPane rootTwo = loaderTwo.load();
             Scene sceneTwo = new Scene(rootTwo);
-            //[STYLESHEET]
 
             //Set up Scene 3 (Quiz)
             FXMLLoader loaderThree = new FXMLLoader(getClass().getResource("scenes\\quiz.fxml"));
@@ -50,6 +51,7 @@ public class Main extends Application {
             GridPane rootSeven = loaderSeven.load();
             Scene sceneSeven = new Scene(rootSeven);
 
+            //Assign controller objects to variable names for each scene.
             Controller soc = loaderOne.getController();
             difficultyController stc = loaderTwo.getController();
             quizController s3c = loaderThree.getController();
@@ -58,6 +60,7 @@ public class Main extends Application {
             loginController s6c = loaderSix.getController();
             adminController s7c = loaderSeven.getController();
 
+            //Set properties of the controllers to include connected controllers and their respective scenes.
             soc.setNextScene(sceneTwo);
             soc.setStc(stc);
             soc.setLoginScene(sceneSix);
@@ -76,11 +79,13 @@ public class Main extends Application {
             s5c.setS4c(s4c);
 
             s6c.setNextScene(sceneSeven);
+            s6c.setPrevScene(sceneOne);
             s6c.setS7c(s7c);
 
             s7c.setLastScene(sceneSix);
             s7c.setS6c(s6c);
 
+            //Set the initial scene to the first page and then show the stage.
             primaryStage.setScene(sceneOne);
             primaryStage.show();
         } catch (Exception e) {
@@ -89,6 +94,7 @@ public class Main extends Application {
     }
 
     private void controlledShutdown(Stage primaryStage){
+        //Closes stage if called.
         primaryStage.close();
     }
 

@@ -37,27 +37,29 @@ public class scoreboardController {
     }
 
     public void loadScores(){
+        //Looks for properties in the user that match the columns of the table (name and score).
         userCol.setCellValueFactory(new PropertyValueFactory("name"));
         scoreCol.setCellValueFactory(new PropertyValueFactory("score"));
         String csvPath = "C:\\Users\\Admin\\IdeaProjects\\test6\\src\\quizeeRascal\\data\\scores.csv";
         try {
             BufferedReader csvReader = new BufferedReader(new FileReader(csvPath));
             String row;
-            while ((row = csvReader.readLine()) != null) {
-                String[] data = row.split(",");
+            while ((row = csvReader.readLine()) != null) { //Reads scores file line by line.
+                String[] data = row.split(","); //Splits csv row into respective properties.
                 System.out.println(data[0] + " " + data[1]);
-                User user = new User(data[0], Integer.parseInt(data[1]));
-                dataList.add(user);
+                User user = new User(data[0], Integer.parseInt(data[1])); //Creates new temporary user instance to insert into table.
+                dataList.add(user); //Add this user to a list of users.
             }
-            csvReader.close();
+            csvReader.close(); //Closes the CSV reader.
         }
         catch(IOException e){
             e.printStackTrace();
         }
-        scoreboard.getSortOrder().add(scoreCol);
-        scoreboard.setItems(dataList);
+        scoreboard.getSortOrder().add(scoreCol); //Sorts scoreboard by score value.
+        scoreboard.setItems(dataList); //Populates table with the data loaded from csv.
     }
 
+    //Method to go back to the final screen.
     public void goBack(ActionEvent event) {
         scoreboard.getItems().clear();
         dataList.clear();
