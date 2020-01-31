@@ -38,7 +38,6 @@ public class Controller {
     public void goDifficulty(ActionEvent event) {
         if (nameInput.getText().matches("[A-z0-9]+")) { //Checks name against regex.
             User currUser = new User((nameInput.getText()), 0);
-            System.out.println(currUser.getName());
             Node node = (Node) event.getSource();
             Stage primaryStage = (Stage) node.getScene().getWindow();
             primaryStage.hide();

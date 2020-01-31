@@ -39,7 +39,7 @@ public class loginController {
         this.nextScene = nextScene;
     }
 
-    public void setPrevScene(Scene nextScene) {
+    public void setPrevScene(Scene prevScene) {
         this.prevScene = prevScene;
     }
 
@@ -105,7 +105,7 @@ public class loginController {
     }
 
     //Method to switch back to main user screen.
-    private void goBack(ActionEvent event) {
+    public void goBack(ActionEvent event) {
         Node node = (Node) event.getSource();
         Stage primaryStage = (Stage) node.getScene().getWindow();
         primaryStage.hide();

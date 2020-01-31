@@ -38,6 +38,8 @@ public class scoreboardController {
 
     public void loadScores(){
         //Looks for properties in the user that match the columns of the table (name and score).
+        scoreboard.getItems().clear(); //Clears table first.
+        dataList.clear();
         userCol.setCellValueFactory(new PropertyValueFactory("name"));
         scoreCol.setCellValueFactory(new PropertyValueFactory("score"));
         String csvPath = "C:\\Users\\Admin\\IdeaProjects\\test6\\src\\quizeeRascal\\data\\scores.csv";
@@ -46,7 +48,6 @@ public class scoreboardController {
             String row;
             while ((row = csvReader.readLine()) != null) { //Reads scores file line by line.
                 String[] data = row.split(","); //Splits csv row into respective properties.
-                System.out.println(data[0] + " " + data[1]);
                 User user = new User(data[0], Integer.parseInt(data[1])); //Creates new temporary user instance to insert into table.
                 dataList.add(user); //Add this user to a list of users.
             }

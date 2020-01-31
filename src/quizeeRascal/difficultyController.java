@@ -31,17 +31,14 @@ public class difficultyController {
 
     //Selection of methods to set the difficulty to easy, medium or hard depending on which button is pressed.
     public void setEasy(){
-        System.out.println("Set difficulty to easy.");
         this.difficulty = "EASY";
     }
 
     public void setMedium(){
-        System.out.println("Set difficulty to medium.");
         this.difficulty = "MEDIUM";
     }
 
     public void setHard(){
-        System.out.println("Set difficulty to hard.");
         this.difficulty = "HARD";
     }
 
